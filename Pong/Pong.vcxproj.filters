@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Global Headers">
+      <UniqueIdentifier>{aebc1bce-75eb-464b-be0e-d8aaa3885920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Controller">
+      <UniqueIdentifier>{0b0af0b8-428d-4df5-89f6-4a8f2108fd21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine">
+      <UniqueIdentifier>{8c0916ce-62b8-4096-85e0-13db55d41f36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Managers">
+      <UniqueIdentifier>{121b47bc-4b16-4e75-a4e9-7bd2a8916273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Managers\Image Render Manager">
+      <UniqueIdentifier>{17ddae5e-ff79-41c0-854e-b80fd8cd0fef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Image">
+      <UniqueIdentifier>{807d3f00-fb01-481a-9eec-5639b1324c1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Image\Texture2D">
+      <UniqueIdentifier>{856f77e3-510d-4f0f-ad2b-807cb0fbb0d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Bitmap Font">
+      <UniqueIdentifier>{1c3fc284-d049-4380-870f-fd947d18c6fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Scenes">
+      <UniqueIdentifier>{28e2107f-3eb4-4d7d-9072-a1f423f684ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Scenes\Game">
+      <UniqueIdentifier>{87d78ad0-fab8-447a-8eef-0f6d88bdb6dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Sprite Sheet">
+      <UniqueIdentifier>{96cbf278-e668-4fe8-b817-a44f24b4ca49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Managers\Texture Manager">
+      <UniqueIdentifier>{d57df38c-345b-4758-bcdf-a5d1f82f6a26}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game Controller\tGameController.h">
+      <Filter>Game Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Bitmap Font\tBitmapFont.h">
+      <Filter>Game Engine\Bitmap Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Image\Texture2D\lodepng.h">
+      <Filter>Game Engine\Image\Texture2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Image\Texture2D\tTGAFileReader.h">
+      <Filter>Game Engine\Image\Texture2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Image\Texture2D\tTexture2D.h">
+      <Filter>Game Engine\Image\Texture2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Image\tImage.h">
+      <Filter>Game Engine\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Managers\Image Render Manager\tImageRenderManager.h">
+      <Filter>Game Engine\Managers\Image Render Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Managers\Texture Manager\tTextureManager.h">
+      <Filter>Game Engine\Managers\Texture Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Sprite Sheet\tSpriteSheet.h">
+      <Filter>Game Engine\Sprite Sheet</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Scenes\Game\tGameScene.h">
+      <Filter>Game Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Global Headers\tStructures.h">
+      <Filter>Global Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Global Headers\tGameSceneType.h">
+      <Filter>Global Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Global Headers\tTexture.h">
+      <Filter>Global Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Global Headers\tWallType.h">
+      <Filter>Global Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Scenes\Game\IModelAdapter.h">
+      <Filter>Game Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Scenes\Game\tBall.h">
+      <Filter>Game Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Scenes\Game\tModel.h">
+      <Filter>Game Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Scenes\Game\tPaddle.h">
+      <Filter>Game Scenes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Scenes\Game\tWall.h">
+      <Filter>Game Scenes\Game</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game Controller\tGameController.cpp">
+      <Filter>Game Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Bitmap Font\tBitmapFont.cpp">
+      <Filter>Game Engine\Bitmap Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Image\Texture2D\lodepng.cpp">
+      <Filter>Game Engine\Image\Texture2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Image\Texture2D\tTGAFileReader.cpp">
+      <Filter>Game Engine\Image\Texture2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Image\Texture2D\tTexture2D.cpp">
+      <Filter>Game Engine\Image\Texture2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Image\tImage.cpp">
+      <Filter>Game Engine\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Managers\Image Render Manager\tImageRenderManager.cpp">
+      <Filter>Game Engine\Managers\Image Render Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Managers\Texture Manager\tTextureManager.cpp">
+      <Filter>Game Engine\Managers\Texture Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Sprite Sheet\tSpriteSheet.cpp">
+      <Filter>Game Engine\Sprite Sheet</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Scenes\Game\tGameScene.cpp">
+      <Filter>Game Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Scenes\Game\tBall.cpp">
+      <Filter>Game Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Scenes\Game\tModel.cpp">
+      <Filter>Game Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Scenes\Game\tPaddle.cpp">
+      <Filter>Game Scenes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Scenes\Game\tWall.cpp">
+      <Filter>Game Scenes\Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="LevenimMT.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LevenimMT.fnt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Logo.tga">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

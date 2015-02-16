@@ -1,0 +1,40 @@
+﻿Build started 2/16/2015 1:02:24 PM.
+     1>Project "C:\Users\Carlos\Documents\My Video Games\Pong\Pong\Pong.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /D GLUT_BUILDING_LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "Game Controller\tGameController.cpp" "Game Engine\Bitmap Font\tBitmapFont.cpp" "Game Engine\Image\tImage.cpp" "Game Engine\Image\Texture2D\lodepng.cpp" "Game Engine\Image\Texture2D\tTexture2D.cpp" "Game Engine\Image\Texture2D\tTGAFileReader.cpp" "Game Engine\Managers\Image Render Manager\tImageRenderManager.cpp" "Game Engine\Managers\Texture Manager\tTextureManager.cpp" "Game Engine\Sprite Sheet\tSpriteSheet.cpp" "Game Scenes\Game\tBall.cpp" "Game Scenes\Game\tGameScene.cpp" "Game Scenes\Game\tModel.cpp" "Game Scenes\Game\tPaddle.cpp" "Game Scenes\Game\tWall.cpp"
+         tWall.cpp
+         tPaddle.cpp
+         tModel.cpp
+         tGameScene.cpp
+         tBall.cpp
+         tSpriteSheet.cpp
+         tTextureManager.cpp
+         tImageRenderManager.cpp
+         tTGAFileReader.cpp
+         tTexture2D.cpp
+         lodepng.cpp
+         tImage.cpp
+         tBitmapFont.cpp
+         tGameController.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Carlos\Documents\My Video Games\Pong\Debug\Pong.exe" /INCREMENTAL /NOLOGO opengl32.lib glut32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Carlos\Documents\My Video Games\Pong\Debug\Pong.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Carlos\Documents\My Video Games\Pong\Debug\Pong.lib" /MACHINE:X86 Debug\tGameController.obj
+         Debug\tBitmapFont.obj
+         Debug\tImage.obj
+         Debug\lodepng.obj
+         Debug\tTexture2D.obj
+         Debug\tTGAFileReader.obj
+         Debug\tImageRenderManager.obj
+         Debug\tTextureManager.obj
+         Debug\tSpriteSheet.obj
+         Debug\tBall.obj
+         Debug\tGameScene.obj
+         Debug\tModel.obj
+         Debug\tPaddle.obj
+         Debug\tWall.obj
+         Pong.vcxproj -> C:\Users\Carlos\Documents\My Video Games\Pong\Debug\Pong.exe
+     1>Done Building Project "C:\Users\Carlos\Documents\My Video Games\Pong\Pong\Pong.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.07
