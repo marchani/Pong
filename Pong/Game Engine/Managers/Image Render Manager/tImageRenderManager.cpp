@@ -97,8 +97,6 @@ void tImageRenderManager::renderImages()
 
         // Bind to the textureName of the current texture.  This is the key of the texture
         // structure
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBindTexture( GL_TEXTURE_2D, textureID );
 		glBegin( GL_TRIANGLE_STRIP );
 		glTexCoord2d( textureX1, textureY2 ); glVertex2f( x1, y1 );
