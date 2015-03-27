@@ -9,6 +9,7 @@
 #include <sys/timeb.h>
 #include "../Game Scenes/Game/tGameScene.h"
 #include "../Game Scenes/Game/tModel.h"
+#include "../Global Headers/tGameMode.h"
 
 tGameController* tGameController::_instancePtr = NULL;
 
@@ -32,6 +33,7 @@ tGameController::tGameController()
 	// Register the wrappers with the event handlers.
 	glutDisplayFunc( displayWrapper );
 	glutKeyboardFunc( keyPressedWrapper );
+	glutSpecialFunc( specialKeyPressedWrapper );
 	glutKeyboardUpFunc( keyboardUpWrapper );
 
 	// Initialize the global timestamp used when refreshing the screen.
@@ -101,6 +103,22 @@ void tGameController::keyPressedWrapper( unsigned char key, int x, int y )
 	if( _instancePtr != NULL )
 	{
 		_instancePtr->keyPressed( key, x, y );
+	}
+	else // _instancePtr == NULL
+	{
+		// Do nothing.
+	}
+}
+
+
+//
+// specialKeyPressedWrapper()
+//
+void tGameController::specialKeyPressedWrapper( int key, int x, int y )
+{
+	if( _instancePtr != NULL )
+	{
+		_instancePtr->specialKeyPressed( key, x, y );
 	}
 	else // _instancePtr == NULL
 	{
@@ -180,6 +198,7 @@ void tGameController::display()
 void tGameController::keyPressed( unsigned char key, int x, int y )
 {
 	assert( _modelPtr != NULL );
+	assert( _viewPtr != NULL );
 
 	switch( _gameSceneType )
 	{
@@ -189,8 +208,22 @@ void tGameController::keyPressed( unsigned char key, int x, int y )
 			{
 				case 32 /* spacebar */:
 				{
-					_gameSceneType = tGameSceneType::kMainScene;
-					_modelPtr->start();
+					int currentSelection = _viewPtr->getCurrentSelection();
+
+					if( currentSelection == 0 )
+					{
+						_gameSceneType = tGameSceneType::kMainScene;
+						_modelPtr->start( tGameMode::kSinglePlayer );
+					}
+					else if( currentSelection == 1 )
+					{
+						_gameSceneType = tGameSceneType::kMainScene;
+						_modelPtr->start( tGameMode::kMultiPlayerLocal );
+					}
+					else if( currentSelection == 2 )
+					{
+						// Do nothing: not yet supported.
+					}
 					break;
 				}
 				default:
@@ -240,6 +273,47 @@ void tGameController::keyPressed( unsigned char key, int x, int y )
 		default:
 		{
 			// Do nothing.
+		}
+	}
+}
+
+
+//
+// specialKeyPressed()
+//
+void tGameController::specialKeyPressed( int key, int x, int y )
+{
+	assert( _modelPtr != NULL );
+	assert( _viewPtr != NULL );
+
+	switch( _gameSceneType )
+	{
+		case tGameSceneType::kTitleScene:
+		{
+			switch( key )
+			{
+				case 101: /* up */
+				{
+					_viewPtr->moveSelection( tGameScene::tDirection::kUp );
+					break;
+				}
+				case 103: /* down */
+				{
+					_viewPtr->moveSelection( tGameScene::tDirection::kDown );
+					break;
+				}
+				default:
+				{
+					// Do nothing.
+					break;
+				}
+			}
+			break;
+		}
+		default:
+		{
+			// Do nothing.
+			break;
 		}
 	}
 }

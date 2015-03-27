@@ -100,6 +100,9 @@
     <ClInclude Include="Game Scenes\Game\tWall.h">
       <Filter>Game Scenes\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Global Headers\tGameMode.h">
+      <Filter>Global Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game Controller\tGameController.cpp">

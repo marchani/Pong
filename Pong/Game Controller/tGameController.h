@@ -33,6 +33,9 @@ class tGameController
 		// keyPressedWrapper()
 		static void keyPressedWrapper( unsigned char key, int x, int y );
 
+		// specialKeyPressedWrapper()
+		static void specialKeyPressedWrapper( int key, int x, int y );
+
 		// keyboardUpWrapper()
 		static void keyboardUpWrapper( unsigned char key, int x, int y );
 
@@ -44,6 +47,9 @@ class tGameController
 
 		// keyPressed()
 		void keyPressed( unsigned char key, int x, int y );
+
+		// specialKeyPressed()
+		void specialKeyPressed( int key, int x, int y );
 
 		// keyboardUp()
 		void keyboardUp( unsigned char key, int x, int y );

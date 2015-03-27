@@ -2,6 +2,7 @@
 // tModel.cpp
 //
 
+#include <assert.h>
 #include "tModel.h"
 #include "tBall.h"
 #include "tPaddle.h"
@@ -42,6 +43,8 @@ tModel::tModel()
 	_rightPlayerScore = 0;
 
 	_isRunning = false;
+
+	_aiEnabled = false;
 }
 
 
@@ -70,8 +73,17 @@ tModel::~tModel()
 //
 // start()
 //
-void tModel::start()
+void tModel::start( tGameMode gameMode )
 {
+	if( gameMode == tGameMode::kSinglePlayer )
+	{
+		_aiEnabled = true;
+	}
+	else // gameMode != tGameMode::kSinglePlayer
+	{
+		// Do nothing.
+	}
+
 	_isRunning = true;
 
 	_leftPlayerScore = 0;
@@ -86,6 +98,8 @@ void tModel::start()
 //
 void tModel::stop()
 {
+	_aiEnabled = false;
+
 	_isRunning = false;
 
 	_ballPtr->stop();
@@ -97,6 +111,15 @@ void tModel::stop()
 //
 void tModel::update( int deltaInMilliseconds )
 {
+	if ( _aiEnabled == true )
+	{
+		updateAI();
+	}
+	else // _aiEnabled == false
+	{
+		// Do nothing.
+	}
+
 	if( ( _leftPlayerScore < kMaxScore ) && ( _rightPlayerScore < kMaxScore ) && ( _isRunning == true ) )
 	{
 		_leftPaddlePtr->updatePosition( deltaInMilliseconds );
@@ -349,4 +372,59 @@ int tModel::getScore( const tPaddle::tPaddleType& player )
 	}
 
 	return returnVal;
+}
+
+
+//
+// updateAI()
+//
+void tModel::updateAI()
+{
+	assert( _leftPaddlePtr != NULL );
+	assert( _ballPtr != NULL );
+
+	CGPoint paddlePosition = _leftPaddlePtr->getCurrentPosition();
+	float paddleHeight = _leftPaddlePtr->getHeight();
+	float halfPaddleHeight = paddleHeight * 0.5f;
+
+	CGPoint ballPosition = 	_ballPtr->getCurrentPosition();
+	CGPoint ballDirection = _ballPtr->getCurrentDirection();
+	float ballDirectionX = ballDirection.x;
+
+	if( ballDirectionX < 0 )
+	{
+		if( paddlePosition.y < ballPosition.y )
+		{
+			stopPaddle(tPaddle::tPaddleType::kLeft, tPaddle::tDirection::kDown );
+			movePaddle(tPaddle::tPaddleType::kLeft, tPaddle::tDirection::kUp );
+		}
+		else if( ( paddlePosition.y - paddleHeight ) > ballPosition.y )
+		{
+			stopPaddle(tPaddle::tPaddleType::kLeft, tPaddle::tDirection::kUp );
+			movePaddle(tPaddle::tPaddleType::kLeft, tPaddle::tDirection::kDown );
+		}
+		else // paddlePosition.y > ballPosition.y
+		{
+			if( ( _leftPaddlePtr->getIsMovingUp() == true ) &&
+				( paddlePosition.y - halfPaddleHeight ) < ballPosition.y )
+			{
+				// Do nothing.
+			}
+			else if( ( _leftPaddlePtr->getIsMovingDown() == true ) &&
+					 ( paddlePosition.y - halfPaddleHeight ) > ballPosition.y )
+			{
+				// Do nothing.
+			}
+			else
+			{
+				stopPaddle(tPaddle::tPaddleType::kLeft, tPaddle::tDirection::kUp );
+				stopPaddle(tPaddle::tPaddleType::kLeft, tPaddle::tDirection::kDown );
+			}
+		}
+	}
+	else // ballDirectionX > 0
+	{
+		stopPaddle(tPaddle::tPaddleType::kLeft, tPaddle::tDirection::kUp );
+		stopPaddle(tPaddle::tPaddleType::kLeft, tPaddle::tDirection::kDown );
+	}
 }

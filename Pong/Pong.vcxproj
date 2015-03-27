@@ -92,6 +92,7 @@
     <ClInclude Include="Game Scenes\Game\tModel.h" />
     <ClInclude Include="Game Scenes\Game\tPaddle.h" />
     <ClInclude Include="Game Scenes\Game\tWall.h" />
+    <ClInclude Include="Global Headers\tGameMode.h" />
     <ClInclude Include="Global Headers\tGameSceneType.h" />
     <ClInclude Include="Global Headers\tStructures.h" />
     <ClInclude Include="Global Headers\tTexture.h" />

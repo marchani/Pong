@@ -6,6 +6,7 @@
 #define ___IMODELADAPTER_H___
 
 #include "tPaddle.h"
+#include "../../Global Headers/tGameMode.h"
 #include "../../Global Headers/tStructures.h"
 #include "../../Global Headers/tWallType.h"
 
@@ -44,7 +45,7 @@ class iModelAdapter
 		virtual int getScore( const tPaddle::tPaddleType& player ) = 0;
 
 		// start()
-		virtual void start() = 0;
+		virtual void start( tGameMode gameMode ) = 0;
 
 		// stop()
 		virtual void stop() = 0;

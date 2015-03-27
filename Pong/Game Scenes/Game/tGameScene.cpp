@@ -38,6 +38,8 @@ tGameScene::tGameScene( iModelAdapter* modelAdapterPtr )
 
 	_bitmapFontPtr = new tBitmapFont( _imageRenderManagerPtr, _textureManagerPtr, "LevenimMT.png", "LevenimMT.fnt" );
 
+	_currentSelection = 0;
+
 	// Query the parameters of the model that will not change during the lifetime of the game for improved performance.
 	_topWallPosition = _modelAdapterPtr->getWallPosition( tWallType::kTop );
 	_bottomWallPosition = _modelAdapterPtr->getWallPosition( tWallType::kBottom );
@@ -50,7 +52,7 @@ tGameScene::tGameScene( iModelAdapter* modelAdapterPtr )
 	_ballRadius = _modelAdapterPtr->getBallRadius();
 
 	// Configure basic OpenGL settings.
-	glOrtho( 0, 900, 0, 600, -1, 1 );
+	glOrtho( 0, 900, 0, 600, 0.0f, 1.0f );
 }
 
 
@@ -249,6 +251,33 @@ void tGameScene::displayMainScene()
 
 
 //
+// moveSelection()
+//
+void tGameScene::moveSelection( tDirection direction )
+{
+	switch( direction )
+	{
+		case tDirection::kUp:
+		{
+			_currentSelection = ( _currentSelection - 1 ) % 3;
+			if( _currentSelection < 0 ) _currentSelection = 2;
+
+			break;
+		}
+		case tDirection::kDown:
+		{
+			_currentSelection = ( _currentSelection + 1 ) % 3;
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+}
+
+
+//
 // displayTitleScene()
 //
 void tGameScene::displayTitleScene()
@@ -258,13 +287,30 @@ void tGameScene::displayTitleScene()
 	assert( _imageRenderManagerPtr != NULL );
 
     // Clear the screen and enable textures.
-    glClear( GL_COLOR_BUFFER_BIT );
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable( GL_TEXTURE_2D );
 
 	_titleImagePtr->renderCenteredAtPoint( CGPointMake( 450.0f, 375.0f ), Scale2fMake( 1.2, 1.2 ) );
-	_bitmapFontPtr->renderStringAt( CGPointMake( 380.0f, 205.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 0.0f ), "One Player" );
-	_bitmapFontPtr->renderStringAt( CGPointMake( 335.0f, 165.0f ), "Two Players (Local)" );
-	_bitmapFontPtr->renderStringAt( CGPointMake( 320.0f, 125.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 0.0f ), "Two Players (Network)" );
+
+	if( _currentSelection == 0 )
+	{
+		_bitmapFontPtr->renderStringAt( CGPointMake( 380.0f, 205.0f ), Color4fMake( 1.0f, 1.0f, 1.0f, 1.0f ), "One Player" );
+		_bitmapFontPtr->renderStringAt( CGPointMake( 335.0f, 165.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "Two Players (Local)" );
+		_bitmapFontPtr->renderStringAt( CGPointMake( 320.0f, 125.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "Two Players (Network)" );
+	}
+	else if( _currentSelection == 1 )
+	{
+		_bitmapFontPtr->renderStringAt( CGPointMake( 380.0f, 205.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "One Player" );
+		_bitmapFontPtr->renderStringAt( CGPointMake( 335.0f, 165.0f ), Color4fMake( 1.0f, 1.0f, 1.0f, 1.0f ), "Two Players (Local)" );
+		_bitmapFontPtr->renderStringAt( CGPointMake( 320.0f, 125.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "Two Players (Network)" );
+	}
+	else if( _currentSelection == 2 )
+	{
+		_bitmapFontPtr->renderStringAt( CGPointMake( 380.0f, 205.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "One Player" );
+		_bitmapFontPtr->renderStringAt( CGPointMake( 335.0f, 165.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "Two Players (Local)" );
+		_bitmapFontPtr->renderStringAt( CGPointMake( 320.0f, 125.0f ), Color4fMake( 1.0f, 1.0f, 1.0f, 1.0f ), "Two Players (Network)" );
+	}
+
 	_bitmapFontPtr->renderStringAt( CGPointMake( 245.0f, 50.0f ), "Press spacebar to make selection" );
 
 	_imageRenderManagerPtr->renderImages();

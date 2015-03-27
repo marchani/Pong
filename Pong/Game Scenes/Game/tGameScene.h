@@ -20,20 +20,32 @@ class tGameScene
 {
 	public:
 
+		enum tDirection
+		{
+			kUp = 0,
+			kDown = 1
+		};
+
 		// constructor()
 		tGameScene( iModelAdapter* modelAdapterPtr );
 
 		// destructor()
 		~tGameScene();
 
+		// getCurrentSelection()
+		int getCurrentSelection() const { return _currentSelection; }
+
 		// start()
 		void start();
 
 		// displayTitleScene()
-		virtual void displayTitleScene();
+		void displayTitleScene();
 
 		// displayMainScene()
-		virtual void displayMainScene();
+		void displayMainScene();
+
+		// moveSelection()
+		void moveSelection( tDirection direction );
 
 	private:
 
@@ -58,6 +70,8 @@ class tGameScene
 
 		tImage* _titleImagePtr;
 		tBitmapFont* _bitmapFontPtr;
+
+		int _currentSelection;  // Current selection in the main menu.
 
 		CGPoint _topWallPosition;     // Position of bottom wall.
 		CGPoint _bottomWallPosition;  // Position of bottom wall.

@@ -38,6 +38,12 @@ class tPaddle
 		// getCurrentPosition()
 		CGPoint getCurrentPosition();
 
+		// getIsMovingUp()
+		bool getIsMovingUp() { return _isMovingUp; }
+
+		// getIsMovingDown()
+		bool getIsMovingDown() { return _isMovingDown; }
+
 		// getWidth()
 		float getWidth();
 

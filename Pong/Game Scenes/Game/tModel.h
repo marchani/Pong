@@ -29,7 +29,7 @@ class tModel : public iModelAdapter
 		~tModel();
 
 		// start()
-		void start();
+		void start( tGameMode gameMode );
 
 		// stop()
 		void stop();
@@ -72,6 +72,11 @@ class tModel : public iModelAdapter
 
 	private:
 
+		// updateAI()
+		void updateAI();
+
+	private:
+
 		tWall*  _topWallPtr;
 		tWall*  _bottomWallPtr;
 		tPaddle* _leftPaddlePtr;
@@ -87,6 +92,8 @@ class tModel : public iModelAdapter
 		int _rightPlayerScore;
 
 		bool _isRunning;
+
+		bool _aiEnabled;  // Is artificial intelligence enabled?
 };
 
 #endif
