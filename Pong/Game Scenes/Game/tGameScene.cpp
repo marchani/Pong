@@ -39,6 +39,7 @@ tGameScene::tGameScene( iModelAdapter* modelAdapterPtr )
 	_bitmapFontPtr = new tBitmapFont( _imageRenderManagerPtr, _textureManagerPtr, "LevenimMT.png", "LevenimMT.fnt" );
 
 	_currentSelection = 0;
+	_currentSelectionNetwork = 0;
 
 	// Query the parameters of the model that will not change during the lifetime of the game for improved performance.
 	_topWallPosition = _modelAdapterPtr->getWallPosition( tWallType::kTop );
@@ -278,6 +279,33 @@ void tGameScene::moveSelection( tDirection direction )
 
 
 //
+// moveSelectionNetwork()
+//
+void tGameScene::moveSelectionNetwork( tDirection direction )
+{
+	switch( direction )
+	{
+		case tDirection::kUp:
+		{
+			_currentSelectionNetwork = ( _currentSelectionNetwork - 1 ) % 2;
+			if( _currentSelectionNetwork < 0 ) _currentSelectionNetwork = 1;
+
+			break;
+		}
+		case tDirection::kDown:
+		{
+			_currentSelectionNetwork = ( _currentSelectionNetwork + 1 ) % 2;
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+}
+
+
+//
 // displayTitleScene()
 //
 void tGameScene::displayTitleScene()
@@ -309,6 +337,39 @@ void tGameScene::displayTitleScene()
 		_bitmapFontPtr->renderStringAt( CGPointMake( 380.0f, 205.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "One Player" );
 		_bitmapFontPtr->renderStringAt( CGPointMake( 335.0f, 165.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "Two Players (Local)" );
 		_bitmapFontPtr->renderStringAt( CGPointMake( 320.0f, 125.0f ), Color4fMake( 1.0f, 1.0f, 1.0f, 1.0f ), "Two Players (Network)" );
+	}
+
+	_bitmapFontPtr->renderStringAt( CGPointMake( 245.0f, 50.0f ), "Press spacebar to make selection" );
+
+	_imageRenderManagerPtr->renderImages();
+
+	// We just drew to the back buffer.  Now we need to swap that with the
+    // front buffer to show it on screen.
+    glutSwapBuffers();
+}
+
+
+//
+// displayNetworkScene()
+//
+void tGameScene::displayNetworkScene()
+{
+	assert( _bitmapFontPtr != NULL );
+	assert( _imageRenderManagerPtr != NULL );
+
+    // Clear the screen and enable textures.
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable( GL_TEXTURE_2D );
+
+	if( _currentSelectionNetwork == 0 )
+	{
+		_bitmapFontPtr->renderStringAt( CGPointMake( 360.0f, 355.0f ), Color4fMake( 1.0f, 1.0f, 1.0f, 1.0f ), "Create Room" );
+		_bitmapFontPtr->renderStringAt( CGPointMake( 375.0f, 315.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "Join Room" );
+	}
+	else if( _currentSelectionNetwork == 1 )
+	{
+		_bitmapFontPtr->renderStringAt( CGPointMake( 360.0f, 355.0f ), Color4fMake( 0.4f, 0.4f, 0.4f, 1.0f ), "Create Room" );
+		_bitmapFontPtr->renderStringAt( CGPointMake( 375.0f, 315.0f ), Color4fMake( 1.0f, 1.0f, 1.0f, 1.0f ), "Join Room" );
 	}
 
 	_bitmapFontPtr->renderStringAt( CGPointMake( 245.0f, 50.0f ), "Press spacebar to make selection" );

@@ -35,6 +35,8 @@ tPaddle::~tPaddle()
 void tPaddle::reset()
 {
 	_currentPosition = _startingPosition;
+	_isMovingUp = false;
+	_isMovingDown = false;
 }
 
 
@@ -44,6 +46,15 @@ void tPaddle::reset()
 CGPoint tPaddle::getCurrentPosition()
 {
 	return _currentPosition;
+}
+
+
+//
+// setCurrentPosition()
+//
+void tPaddle::setCurrentPosition( const CGPoint& position )
+{
+	_currentPosition = position;
 }
 
 

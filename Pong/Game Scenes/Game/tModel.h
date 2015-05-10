@@ -40,6 +40,9 @@ class tModel : public iModelAdapter
 		// getPaddlePosition()
 		CGPoint getPaddlePosition( const tPaddle::tPaddleType& paddleType );
 
+		// setPaddlePosition()
+		void setPaddlePosition( const tPaddle::tPaddleType& paddleType, const CGPoint& position );
+
 		// movePaddle()
 		void movePaddle( tPaddle::tPaddleType paddleType, tPaddle::tDirection direction );
 
@@ -55,6 +58,9 @@ class tModel : public iModelAdapter
 		// getBallPosition()
 		CGPoint getBallPosition();
 
+		// setBallPosition()
+		void setBallPosition( const CGPoint& position );
+
 		// getBallRadius()
 		float getBallRadius();
 
@@ -69,6 +75,9 @@ class tModel : public iModelAdapter
 
 		// getScore()
 		int getScore( const tPaddle::tPaddleType& player );
+
+   		// setScore()
+		void setScore( const tPaddle::tPaddleType& player, int score );
 
 	private:
 
@@ -94,6 +103,7 @@ class tModel : public iModelAdapter
 		bool _isRunning;
 
 		bool _aiEnabled;  // Is artificial intelligence enabled?
+		tGameMode _gameMode;
 };
 
 #endif

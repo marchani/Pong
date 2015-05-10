@@ -29,6 +29,9 @@ class iModelAdapter
 		// getPaddlePosition()
 		virtual CGPoint getPaddlePosition( const tPaddle::tPaddleType& paddleType ) = 0;
 
+		// setPaddlePosition()
+		virtual void setPaddlePosition( const tPaddle::tPaddleType& paddleType, const CGPoint& position ) = 0;
+
 		// getPaddleWidth()
 		virtual float getPaddleWidth() = 0;
 
@@ -38,11 +41,17 @@ class iModelAdapter
 		// getBallPosition()
 		virtual CGPoint getBallPosition() = 0;
 
+		// setBallPosition()
+		virtual void setBallPosition( const CGPoint& position ) = 0;
+
 		// getBallRadius()
 		virtual float getBallRadius() = 0;
 
 		// getScore()
 		virtual int getScore( const tPaddle::tPaddleType& player ) = 0;
+
+		// setScore()
+		virtual void setScore( const tPaddle::tPaddleType& player, int score ) = 0;
 
 		// start()
 		virtual void start( tGameMode gameMode ) = 0;

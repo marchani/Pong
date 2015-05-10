@@ -35,17 +35,26 @@ class tGameScene
 		// getCurrentSelection()
 		int getCurrentSelection() const { return _currentSelection; }
 
+		// getCurrentSelectionNetwork()
+		int getCurrentSelectionNetwork() const { return _currentSelectionNetwork; }
+
 		// start()
 		void start();
 
 		// displayTitleScene()
 		void displayTitleScene();
 
+		// displayNetworkScene()
+		void displayNetworkScene();
+
 		// displayMainScene()
 		void displayMainScene();
 
 		// moveSelection()
 		void moveSelection( tDirection direction );
+
+		// moveSelectionNetwork()
+		void moveSelectionNetwork( tDirection direction );
 
 	private:
 
@@ -71,7 +80,8 @@ class tGameScene
 		tImage* _titleImagePtr;
 		tBitmapFont* _bitmapFontPtr;
 
-		int _currentSelection;  // Current selection in the main menu.
+		int _currentSelection;         // Current selection in the main menu.
+		int _currentSelectionNetwork;  // Current selection in the network menu.
 
 		CGPoint _topWallPosition;     // Position of bottom wall.
 		CGPoint _bottomWallPosition;  // Position of bottom wall.

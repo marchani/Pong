@@ -75,6 +75,8 @@ tModel::~tModel()
 //
 void tModel::start( tGameMode gameMode )
 {
+	_gameMode = gameMode;
+
 	if( gameMode == tGameMode::kSinglePlayer )
 	{
 		_aiEnabled = true;
@@ -90,6 +92,8 @@ void tModel::start( tGameMode gameMode )
 	_rightPlayerScore = 0;
 
 	_ballPtr->start();
+    _leftPaddlePtr->reset();
+    _rightPaddlePtr->reset();
 }
 
 
@@ -124,57 +128,61 @@ void tModel::update( int deltaInMilliseconds )
 	{
 		_leftPaddlePtr->updatePosition( deltaInMilliseconds );
 		_rightPaddlePtr->updatePosition( deltaInMilliseconds );
-		_ballPtr->updatePosition( deltaInMilliseconds );
 
-		// First, detect if the ball collides with the right paddle.
-		// Then, detect if the ball collides with the left paddle.
+		if( _gameMode != tGameMode::kMultiPlayerNetwork )
+		{
+			_ballPtr->updatePosition( deltaInMilliseconds );
 
-		if( ( _ballPtr->intersects( CGRectMake( _rightPaddlePtr->getCurrentPosition().x, _rightPaddlePtr->getCurrentPosition().y, _paddleWidth, _paddleHeight ) ) == true ) &&
-			( _ballPtr->getCurrentDirection().x > 0.0f ) )
-		{
-			_ballPtr->setCurrentPositionX( _rightPaddlePtr->getCurrentPosition().x - _ballRadius );
+		    // First, detect if the ball collides with the right paddle.
+		    // Then, detect if the ball collides with the left paddle.
 
-			// Change the sign of the x-component of the velocity vector and increase the velocity of the ball each time it collides with a paddle.
-			_ballPtr->setCurrentDirection( CGPointMake( -_ballPtr->getCurrentDirection().x * 1.2f, _ballPtr->getCurrentDirection().y * 1.2f ) );
-		}
-		else if( ( _ballPtr->intersects( CGRectMake( _leftPaddlePtr->getCurrentPosition().x, _leftPaddlePtr->getCurrentPosition().y, _paddleWidth, _paddleHeight ) ) == true ) &&
-			     ( _ballPtr->getCurrentDirection().x < 0.0f ) )
-		{
-			_ballPtr->setCurrentPositionX( _leftPaddlePtr->getCurrentPosition().x + _paddleWidth + _ballRadius );
+		    if( ( _ballPtr->intersects( CGRectMake( _rightPaddlePtr->getCurrentPosition().x, _rightPaddlePtr->getCurrentPosition().y, _paddleWidth, _paddleHeight ) ) == true ) &&
+			    ( _ballPtr->getCurrentDirection().x > 0.0f ) )
+		    {
+			    _ballPtr->setCurrentPositionX( _rightPaddlePtr->getCurrentPosition().x - _ballRadius );
 
-			// Change the sign of the x-component of the velocity vector and increase the velocity of the ball each time it collides with a paddle.
-			_ballPtr->setCurrentDirection( CGPointMake( -_ballPtr->getCurrentDirection().x * 1.2f, _ballPtr->getCurrentDirection().y * 1.2f ) );
-		}
+			    // Change the sign of the x-component of the velocity vector and increase the velocity of the ball each time it collides with a paddle.
+			    _ballPtr->setCurrentDirection( CGPointMake( -_ballPtr->getCurrentDirection().x * 1.2f, _ballPtr->getCurrentDirection().y * 1.2f ) );
+		    }
+		    else if( ( _ballPtr->intersects( CGRectMake( _leftPaddlePtr->getCurrentPosition().x, _leftPaddlePtr->getCurrentPosition().y, _paddleWidth, _paddleHeight ) ) == true ) &&
+			         ( _ballPtr->getCurrentDirection().x < 0.0f ) )
+		    {
+			    _ballPtr->setCurrentPositionX( _leftPaddlePtr->getCurrentPosition().x + _paddleWidth + _ballRadius );
 
-		// Then, detect if the ball collides with the top wall.
-		// Then, detect if the ball collides with the bottom wall.
-		if( ( _ballPtr->getCurrentPosition().y + _ballRadius ) >= ( 600 - _wallWidth ) )
-		{
-			_ballPtr->setCurrentPositionY( 600.0f - _wallWidth - _ballRadius );
-			_ballPtr->flipDirectionY();
-		}
-		else if( ( _ballPtr->getCurrentPosition().y - _ballRadius ) <= _wallWidth )
-		{
-			_ballPtr->setCurrentPositionY( _wallWidth + _ballRadius );
-			_ballPtr->flipDirectionY();
-		}
+			    // Change the sign of the x-component of the velocity vector and increase the velocity of the ball each time it collides with a paddle.
+			    _ballPtr->setCurrentDirection( CGPointMake( -_ballPtr->getCurrentDirection().x * 1.2f, _ballPtr->getCurrentDirection().y * 1.2f ) );
+		    }
 
-		// Detect if the ball leaves the playing field.
-		// Case 1: Ball leaves field to the right and left player scores point.
-		// Case 2: Ball leaves field to the left and right player scores point.
-		if( ( _ballPtr->getCurrentPosition().x - _ballRadius ) >= 900 )
-		{
-			_ballPtr->reset();
-			_leftPlayerScore = _leftPlayerScore + 1;
-		}
-		else if( ( _ballPtr->getCurrentPosition().x + _ballRadius ) <= 0.0 )
-		{
-			_ballPtr->reset();
-			_rightPlayerScore = _rightPlayerScore + 1;
-		}
-		else
-		{
-			// Do nothing since the ball is still in the playing field.
+		    // Then, detect if the ball collides with the top wall.
+		    // Then, detect if the ball collides with the bottom wall.
+		    if( ( _ballPtr->getCurrentPosition().y + _ballRadius ) >= ( 600 - _wallWidth ) )
+		    {
+			    _ballPtr->setCurrentPositionY( 600.0f - _wallWidth - _ballRadius );
+			    _ballPtr->flipDirectionY();
+		    }
+		    else if( ( _ballPtr->getCurrentPosition().y - _ballRadius ) <= _wallWidth )
+		    {
+			    _ballPtr->setCurrentPositionY( _wallWidth + _ballRadius );
+			    _ballPtr->flipDirectionY();
+		    }
+
+		    // Detect if the ball leaves the playing field.
+		    // Case 1: Ball leaves field to the right and left player scores point.
+		    // Case 2: Ball leaves field to the left and right player scores point.
+		    if( ( _ballPtr->getCurrentPosition().x - _ballRadius ) >= 900 )
+		    {
+			    _ballPtr->reset();
+			    _leftPlayerScore = _leftPlayerScore + 1;
+		    }
+		    else if( ( _ballPtr->getCurrentPosition().x + _ballRadius ) <= 0.0 )
+		    {
+			    _ballPtr->reset();
+			    _rightPlayerScore = _rightPlayerScore + 1;
+		    }
+		    else
+		    {
+			    // Do nothing since the ball is still in the playing field.
+		    }
 		}
 	}
 	else
@@ -210,6 +218,31 @@ CGPoint tModel::getPaddlePosition( const tPaddle::tPaddleType& paddleType )
 	}
 
 	return currentPosition;
+}
+
+
+//
+// setPaddlePosition()
+//
+void tModel::setPaddlePosition( const tPaddle::tPaddleType& paddleType, const CGPoint& position )
+{
+	switch( paddleType )
+	{
+		case tPaddle::tPaddleType::kLeft:
+		{
+			_leftPaddlePtr->setCurrentPosition( position );
+			break;									
+		}
+		case tPaddle::tPaddleType::kRight:
+		{
+			_rightPaddlePtr->setCurrentPosition( position );
+			break;
+		}
+		default:
+		{
+			// Do nothing.
+		}
+	}
 }
 
 
@@ -287,6 +320,15 @@ float tModel::getPaddleHeight()
 CGPoint tModel::getBallPosition()
 {
 	return _ballPtr->getCurrentPosition();
+}
+
+
+//
+// setBallPosition()
+//
+void tModel::setBallPosition( const CGPoint& position )
+{
+	_ballPtr->setCurrentPosition( position );
 }
 
 
@@ -372,6 +414,31 @@ int tModel::getScore( const tPaddle::tPaddleType& player )
 	}
 
 	return returnVal;
+}
+
+
+//
+// setScore()
+//
+void tModel::setScore( const tPaddle::tPaddleType& player, int score )
+{
+	switch( player )
+	{
+		case tPaddle::tPaddleType::kLeft:
+		{
+			_leftPlayerScore = score;
+			break;
+		}
+		case tPaddle::tPaddleType::kRight:
+		{
+			_rightPlayerScore = score;
+			break;
+		}
+		default:
+		{
+			// Do nothing.
+		}
+	}
 }
 
 

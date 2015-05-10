@@ -38,6 +38,9 @@ class tPaddle
 		// getCurrentPosition()
 		CGPoint getCurrentPosition();
 
+		// setCurrentPosition()
+		void setCurrentPosition( const CGPoint& position );
+
 		// getIsMovingUp()
 		bool getIsMovingUp() { return _isMovingUp; }
 

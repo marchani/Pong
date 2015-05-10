@@ -8,7 +8,8 @@
 enum tGameSceneType
 {
 	kTitleScene = 0,
-	kMainScene = 1
+	kNetworkScene = 1,
+	kMainScene = 2
 };
 
 #endif

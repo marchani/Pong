@@ -85,6 +85,12 @@
     <ClInclude Include="Game Engine\Image\Texture2D\tTGAFileReader.h" />
     <ClInclude Include="Game Engine\Managers\Image Render Manager\tImageRenderManager.h" />
     <ClInclude Include="Game Engine\Managers\Texture Manager\tTextureManager.h" />
+    <ClInclude Include="Game Engine\Network\tModelClient.h" />
+    <ClInclude Include="Game Engine\Network\ClientNetwork.h" />
+    <ClInclude Include="Game Engine\Network\NetworkData.h" />
+    <ClInclude Include="Game Engine\Network\NetworkServices.h" />
+    <ClInclude Include="Game Engine\Network\tModelServer.h" />
+    <ClInclude Include="Game Engine\Network\ServerNetwork.h" />
     <ClInclude Include="Game Engine\Sprite Sheet\tSpriteSheet.h" />
     <ClInclude Include="Game Scenes\Game\IModelAdapter.h" />
     <ClInclude Include="Game Scenes\Game\tBall.h" />
@@ -107,10 +113,15 @@
     <ClCompile Include="Game Engine\Image\Texture2D\tTGAFileReader.cpp" />
     <ClCompile Include="Game Engine\Managers\Image Render Manager\tImageRenderManager.cpp" />
     <ClCompile Include="Game Engine\Managers\Texture Manager\tTextureManager.cpp" />
+    <ClCompile Include="Game Engine\Network\ClientNetwork.cpp" />
+    <ClCompile Include="Game Engine\Network\NetworkServices.cpp" />
+    <ClCompile Include="Game Engine\Network\ServerNetwork.cpp" />
     <ClCompile Include="Game Engine\Sprite Sheet\tSpriteSheet.cpp" />
     <ClCompile Include="Game Scenes\Game\tBall.cpp" />
     <ClCompile Include="Game Scenes\Game\tGameScene.cpp" />
     <ClCompile Include="Game Scenes\Game\tModel.cpp" />
+    <ClCompile Include="Game Scenes\Game\tModelClient.cpp" />
+    <ClCompile Include="Game Scenes\Game\tModelServer.cpp" />
     <ClCompile Include="Game Scenes\Game\tPaddle.cpp" />
     <ClCompile Include="Game Scenes\Game\tWall.cpp" />
   </ItemGroup>

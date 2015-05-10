@@ -32,14 +32,20 @@
     <Filter Include="Game Scenes">
       <UniqueIdentifier>{28e2107f-3eb4-4d7d-9072-a1f423f684ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game Scenes\Game">
-      <UniqueIdentifier>{87d78ad0-fab8-447a-8eef-0f6d88bdb6dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game Engine\Sprite Sheet">
       <UniqueIdentifier>{96cbf278-e668-4fe8-b817-a44f24b4ca49}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game Engine\Managers\Texture Manager">
       <UniqueIdentifier>{d57df38c-345b-4758-bcdf-a5d1f82f6a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Engine\Network">
+      <UniqueIdentifier>{b706a8be-3ffd-4b84-8168-3dd9279b6712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Scenes\Game Client">
+      <UniqueIdentifier>{87d78ad0-fab8-447a-8eef-0f6d88bdb6dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Scenes\GameServer">
+      <UniqueIdentifier>{e952b3ac-eef7-4e17-9a4b-ba6a87920b54}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +77,7 @@
       <Filter>Game Engine\Sprite Sheet</Filter>
     </ClInclude>
     <ClInclude Include="Game Scenes\Game\tGameScene.h">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClInclude>
     <ClInclude Include="Global Headers\tStructures.h">
       <Filter>Global Headers</Filter>
@@ -86,22 +92,40 @@
       <Filter>Global Headers</Filter>
     </ClInclude>
     <ClInclude Include="Game Scenes\Game\IModelAdapter.h">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClInclude>
     <ClInclude Include="Game Scenes\Game\tBall.h">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClInclude>
     <ClInclude Include="Game Scenes\Game\tModel.h">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClInclude>
     <ClInclude Include="Game Scenes\Game\tPaddle.h">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClInclude>
     <ClInclude Include="Game Scenes\Game\tWall.h">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClInclude>
     <ClInclude Include="Global Headers\tGameMode.h">
       <Filter>Global Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Network\ServerNetwork.h">
+      <Filter>Game Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Network\NetworkServices.h">
+      <Filter>Game Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Network\NetworkData.h">
+      <Filter>Game Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Network\ClientNetwork.h">
+      <Filter>Game Engine\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Network\tModelClient.h">
+      <Filter>Game Scenes\Game Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Engine\Network\tModelServer.h">
+      <Filter>Game Scenes\GameServer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -133,19 +157,34 @@
       <Filter>Game Engine\Sprite Sheet</Filter>
     </ClCompile>
     <ClCompile Include="Game Scenes\Game\tGameScene.cpp">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClCompile>
     <ClCompile Include="Game Scenes\Game\tBall.cpp">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClCompile>
     <ClCompile Include="Game Scenes\Game\tModel.cpp">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClCompile>
     <ClCompile Include="Game Scenes\Game\tPaddle.cpp">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
     </ClCompile>
     <ClCompile Include="Game Scenes\Game\tWall.cpp">
-      <Filter>Game Scenes\Game</Filter>
+      <Filter>Game Scenes\Game Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Network\ServerNetwork.cpp">
+      <Filter>Game Engine\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Network\NetworkServices.cpp">
+      <Filter>Game Engine\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Engine\Network\ClientNetwork.cpp">
+      <Filter>Game Engine\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Scenes\Game\tModelClient.cpp">
+      <Filter>Game Scenes\Game Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Game Scenes\Game\tModelServer.cpp">
+      <Filter>Game Scenes\GameServer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,15 @@
 c:\users\carlos\documents\my video games\pong\pong\release\vc120.pdb
 c:\users\carlos\documents\my video games\pong\pong\release\twall.obj
 c:\users\carlos\documents\my video games\pong\pong\release\tpaddle.obj
+c:\users\carlos\documents\my video games\pong\pong\release\tmodelserver.obj
+c:\users\carlos\documents\my video games\pong\pong\release\tmodelclient.obj
 c:\users\carlos\documents\my video games\pong\pong\release\tmodel.obj
 c:\users\carlos\documents\my video games\pong\pong\release\tgamescene.obj
 c:\users\carlos\documents\my video games\pong\pong\release\tball.obj
 c:\users\carlos\documents\my video games\pong\pong\release\tspritesheet.obj
+c:\users\carlos\documents\my video games\pong\pong\release\servernetwork.obj
+c:\users\carlos\documents\my video games\pong\pong\release\networkservices.obj
+c:\users\carlos\documents\my video games\pong\pong\release\clientnetwork.obj
 c:\users\carlos\documents\my video games\pong\pong\release\ttexturemanager.obj
 c:\users\carlos\documents\my video games\pong\pong\release\timagerendermanager.obj
 c:\users\carlos\documents\my video games\pong\pong\release\ttgafilereader.obj

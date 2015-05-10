@@ -6,16 +6,26 @@
 
 #include <assert.h>
 #include <gl/glut.h>
+#include <process.h>
 #include <sys/timeb.h>
+#include "../Game Scenes/Game/tModelServer.h"
 #include "../Game Scenes/Game/tGameScene.h"
 #include "../Game Scenes/Game/tModel.h"
+#include "../Game Scenes/Game/tModelClient.h"
 #include "../Global Headers/tGameMode.h"
 
 tGameController* tGameController::_instancePtr = NULL;
 
 static const float kRefreshRateInMilliseconds = ( 1.0f / 60.0f /* Hz */) / 1000.0f /* milliseconds per second */;
+static const float kRefreshRateInMillisecondsServer = 5.0f;
 
 timeb gTimestamp;
+timeb gTimestampServer;
+
+tModelServer* serverPtr;
+tModelClient* client;
+
+void serverLoop( void* );
 
 //
 // Constructor()
@@ -38,6 +48,7 @@ tGameController::tGameController()
 
 	// Initialize the global timestamp used when refreshing the screen.
 	ftime( &gTimestamp );
+	ftime( &gTimestampServer );
 }
 
 
@@ -159,6 +170,17 @@ void tGameController::display()
 	// Update the model.
 	_modelPtr->update( timeSinceLastCall );
 
+	if( client != NULL )
+	{
+		client->update( timeSinceLastCall );
+
+		if( client->getStartGame() == true )
+		{
+			_gameSceneType = tGameSceneType::kMainScene;
+			_modelPtr->start( tGameMode::kMultiPlayerNetwork );
+		}
+	}
+
 	// Refresh the screen based on the desired refresh rate (kRefreshRateInMilliseconds).
 	if(  timeSinceLastCall >= kRefreshRateInMilliseconds )
 	{
@@ -170,6 +192,11 @@ void tGameController::display()
 			case tGameSceneType::kTitleScene:
 			{
 				_viewPtr->displayTitleScene();
+				break;
+			}
+			case tGameSceneType::kNetworkScene:
+			{
+				_viewPtr->displayNetworkScene();
 				break;
 			}
 			case tGameSceneType::kMainScene:
@@ -222,7 +249,46 @@ void tGameController::keyPressed( unsigned char key, int x, int y )
 					}
 					else if( currentSelection == 2 )
 					{
-						// Do nothing: not yet supported.
+						_gameSceneType = tGameSceneType::kNetworkScene;
+					}
+					break;
+				}
+				default:
+				{
+					// Do nothing.
+				}
+			}
+			break;
+		}
+		case tGameSceneType::kNetworkScene:
+		{
+			switch( key )
+			{
+				case 32 /* spacebar */:
+				{
+					int currentSelection = _viewPtr->getCurrentSelectionNetwork();
+
+					if( currentSelection == 0 )
+					{
+						if( serverPtr == NULL )
+						{
+							// Create the game server.
+							serverPtr = new tModelServer();
+
+							// create thread with arbitrary argument for the run function
+							_beginthread( serverLoop, 0, (void*)12);
+						}
+
+						if( client == NULL )
+						{
+							// Create the game client.
+							client = new tModelClient( _modelPtr, tPaddle::tPaddleType::kRight );
+						}
+					}
+					else if( currentSelection == 1 )
+					{
+						// Create the game client.
+						client = new tModelClient( _modelPtr, tPaddle::tPaddleType::kLeft );
 					}
 					break;
 				}
@@ -310,6 +376,28 @@ void tGameController::specialKeyPressed( int key, int x, int y )
 			}
 			break;
 		}
+		case tGameSceneType::kNetworkScene:
+		{
+			switch( key )
+			{
+				case 101: /* up */
+				{
+					_viewPtr->moveSelectionNetwork( tGameScene::tDirection::kUp );
+					break;
+				}
+				case 103: /* down */
+				{
+					_viewPtr->moveSelectionNetwork( tGameScene::tDirection::kDown );
+					break;
+				}
+				default:
+				{
+					// Do nothing.
+					break;
+				}
+			}
+			break;
+		}
 		default:
 		{
 			// Do nothing.
@@ -369,6 +457,33 @@ void tGameController::keyboardUp( unsigned char key, int x, int y )
 			// Do nothing.
 		}
 	}
+}
+
+
+//
+// serverLoop()
+//
+void serverLoop( void* arg)
+{
+	serverPtr->start();
+
+    while( true )
+    {
+		// Obtain the number of milliseconds since this function was last called.
+		timeb currentTime;
+		ftime( &currentTime );
+		int timeSinceLastCall = ( int )( 1000.0 * ( currentTime.time - gTimestampServer.time ) + ( currentTime.millitm - gTimestampServer.millitm ) );
+
+		// Refresh the screen based on the desired refresh rate (kRefreshRateInMilliseconds).
+		if(  timeSinceLastCall >= kRefreshRateInMillisecondsServer )
+		{
+			// Update the global timestamp used when refreshing the screen.
+			gTimestampServer = currentTime;
+
+			assert( serverPtr != NULL );
+			serverPtr->update( timeSinceLastCall );
+		}
+    }
 }
 
 
