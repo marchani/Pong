@@ -132,8 +132,8 @@ void tBall::reset()
 //
 bool tBall::intersects( const CGRect& rectangle )
 {
-	CGPoint circleDistance = CGPointMake( abs( _currentPosition.x - ( rectangle.x + rectangle.width / 2.0f ) ),
-		                                  abs( _currentPosition.y - ( rectangle.y - rectangle.height / 2.0f) ) );
+	CGPoint circleDistance = CGPointMake( fabs( _currentPosition.x - ( rectangle.x + rectangle.width / 2.0f ) ),
+		                                  fabs( _currentPosition.y - ( rectangle.y - rectangle.height / 2.0f) ) );
 
 	if( circleDistance.x > ( rectangle.width / 2.0f + kRadius ) ) { return false; }
     if( circleDistance.y > ( rectangle.height / 2.0f + kRadius ) ) { return false; }
