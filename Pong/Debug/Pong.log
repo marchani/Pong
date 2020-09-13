@@ -1,1 +1,28 @@
-﻿
+﻿  tGameController.cpp
+  tBitmapFont.cpp
+c:\users\carlos\documents\github\pong\pong\game engine\bitmap font\tbitmapfont.h(59): warning C4091: 'typedef ': ignored on left of 'tBitmapFont::tBitmapFontChar' when no variable is declared
+  tImage.cpp
+  lodepng.cpp
+  tTexture2D.cpp
+  tTGAFileReader.cpp
+  tImageRenderManager.cpp
+  tTextureManager.cpp
+  ClientNetwork.cpp
+  NetworkServices.cpp
+  ServerNetwork.cpp
+  tSpriteSheet.cpp
+  tBall.cpp
+c:\users\carlos\documents\github\pong\pong\game scenes\game\tball.cpp(136): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\carlos\documents\github\pong\pong\game scenes\game\tball.cpp(135): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\carlos\documents\github\pong\pong\game scenes\game\tball.cpp(144): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  tGameScene.cpp
+c:\users\carlos\documents\github\pong\pong\game engine\bitmap font\tbitmapfont.h(59): warning C4091: 'typedef ': ignored on left of 'tBitmapFont::tBitmapFontChar' when no variable is declared
+  tModel.cpp
+  tModelClient.cpp
+c:\users\carlos\documents\github\pong\pong\game scenes\game\tmodelclient.cpp(122): warning C4018: '<': signed/unsigned mismatch
+  tModelServer.cpp
+c:\users\carlos\documents\github\pong\pong\game scenes\game\tmodelserver.cpp(133): warning C4018: '<': signed/unsigned mismatch
+  tPaddle.cpp
+  tWall.cpp
+  Generating Code...
+  Pong.vcxproj -> C:\Users\Carlos\Documents\GitHub\Pong\Debug\Pong.exe
